@@ -15,3 +15,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.buttonarea {
+  @apply text-xs hover:bg-blue-600 hover:text-white px-1;
+}
+
+.resizebtn {
+  @apply mr-0.5 h-5 w-5 hover:brightness-125
+}
