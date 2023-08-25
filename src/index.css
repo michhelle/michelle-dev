@@ -23,3 +23,15 @@ code {
 .resizebtn {
   @apply mr-0.5 h-5 w-5 hover:brightness-125
 }
+
+.icon-text {
+  @apply mt-1 px-1 justify-self-center drop-shadow-[0_1.2px_0.5px_rgba(0,0,0,0.8)] text-xs text-white
+}
+
+.calc-red {
+  @apply border border-gray-500 rounded-md ml-1 mb-2 py-1 px-0.5 bg-gray-50 text-red-500 hover:border-blue-600 hover:bg-blue-50 
+}
+
+.calc-blue {
+  @apply border border-gray-500 rounded-md ml-1 mb-2 py-1 px-0.5 bg-gray-50 text-blue-600 hover:border-blue-600 hover:bg-blue-50 
+}
