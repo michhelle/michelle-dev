@@ -38,7 +38,7 @@ function Calculator({setShowCalculator}) {
           <div class="flex flex-row mt-4 ml-2 justify-between">
             <div class="h-8 w-8 border-2 border-t-gray-400 border-l-gray-400 border-r-white border-b-white" />
             <div id="top-line" class="grid grid-cols-3 flex justify-between">
-              <button class="calc-red">Backspace</button>
+              <button class="calc-red ml-0.5">Backspace</button>
               <button class="calc-red">CE</button>
               <button class="calc-red">C</button>
             </div>
@@ -51,31 +51,31 @@ function Calculator({setShowCalculator}) {
               <button class="calc-red">M+</button>
             </div>
 
-            <div class="grid grid-rows-4 ml-1">
+            <div class="grid grid-rows-4 ml-0.5">
               <button class="calc-blue">7</button>
               <button class="calc-blue">4</button>
               <button class="calc-blue">1</button>
               <button class="calc-blue">0</button>
             </div>
-            <div class="grid grid-rows-4 ml-1">
+            <div class="grid grid-rows-4 ml-0.5">
               <button class="calc-blue">8</button>
               <button class="calc-blue">5</button>
               <button class="calc-blue">2</button>
               <button class="calc-blue">+/-</button>
             </div>
-            <div class="grid grid-rows-4 ml-1">
+            <div class="grid grid-rows-4 ml-0.5">
               <button class="calc-blue">9</button>
               <button class="calc-blue">6</button>
               <button class="calc-blue">3</button>
               <button class="calc-blue">.</button>
             </div>
-            <div class="grid grid-rows-4 ml-1">
+            <div class="grid grid-rows-4 ml-0.5">
               <button class="calc-red">/</button>
               <button class="calc-red">*</button>
               <button class="calc-red">-</button>
               <button class="calc-red">+</button>
             </div>
-            <div class="grid grid-rows-4 ml-1">
+            <div class="grid grid-rows-4 ml-0.5">
               <button class="calc-blue">sqrt</button>
               <button class="calc-blue">%</button>
               <button class="calc-blue">1/x</button>
