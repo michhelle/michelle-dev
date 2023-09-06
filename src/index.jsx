@@ -5,14 +5,15 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import Home from "./screens/Home/Home";
 import Test from "./components/test";
+import FooterWindow from "./components/FooterWindow";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Home />
-{/* <Test /> */}
- </React.StrictMode>
+    {/* <Home /> */}
+    <Test />
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

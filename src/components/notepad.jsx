@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import Window from "./window";
 
-function Notepad({ setShowNotepad }) {
+function Notepad({ removeWindow }) {
+
+    const handleCloseClick = () => {
+      removeWindow();
+    };
+
    return (
      <>
        <Window
+         
          hprimary={"h-480"}
          wprimary={"w-96"}
-         closeWindow={() => setShowNotepad(false)}
+         removeWindow={() => {handleCloseClick()}}
          title="Untitled - Notepad"
          src="/images/icons/notepad.png"
+         resizable={true}
        >
          <div class="flex flex-row h-6 w-full bg-orange-50 self-start ">
            <button class="buttonarea">File</button>
