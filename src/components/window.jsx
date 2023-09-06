@@ -15,9 +15,8 @@ const Window = ({
   const dragProps = useRef({
     offsetX: 0,
     offsetY: 0,
-    initialLeft: 0,
-    initialTop: 0,
   });
+
 
   const initialiseDrag = (event) => {
     event.preventDefault();
@@ -28,8 +27,6 @@ const Window = ({
     dragProps.current = {
       offsetX: clientX - offsetLeft,
       offsetY: clientY - offsetTop,
-      initialLeft: offsetLeft,
-      initialTop: offsetTop,
     };
 
     isDraggingRef.current = true;
@@ -44,7 +41,7 @@ const Window = ({
 
   const startDragging = ({ clientX, clientY }) => {
     if (isDraggingRef.current && elemRef.current) {
-      const { offsetX, offsetY, initialLeft, initialTop } = dragProps.current;
+      const { offsetX, offsetY } = dragProps.current;
 
       // Calculate the new position based on initial values and mouse movement
       const newLeft = clientX - offsetX;
@@ -61,9 +58,8 @@ const Window = ({
   };
 
   const setActiveWindow = () => {
-    // You can implement this function as needed to handle multiple windows
-    // For example, bring the current window to the front, etc.
-    // You can maintain an array of window elements and update their zIndex or focus state.
+    // Set window style to be dark blue when active,
+    // Light blue when inactive
   };
 
   useEffect(() => {
@@ -86,7 +82,7 @@ const Window = ({
     <div
       ref={elemRef}
       id="windows"
-      className={`${hprimary} ${wprimary} absolute select-none flex border-2 border-blue-700 rounded-t-lg flex flex-col`}
+      className={`${hprimary} ${wprimary} overflow-hidden z-40 absolute select-none flex border-2 border-blue-700 rounded-t-lg flex flex-col`}
     >
       <div
         onMouseDown={initialiseDrag}

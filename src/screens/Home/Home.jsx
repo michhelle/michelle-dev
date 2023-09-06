@@ -8,6 +8,7 @@ import DragBox from "../../components/dragbox.jsx";
 import Thumbnail from "../../components/thumbnail.jsx";
 import FooterWindow from "../../components/FooterWindow.jsx";
 import Window from "../../components/window.jsx";
+import MyComputer from "../../components/myComputer.jsx";
 
 const getTime = () => {
   const date = new Date();
@@ -57,6 +58,20 @@ function Home() {
       />,
     ]);
   };
+
+ const onComputerClick = () => {
+   const id = nextWindowId; // Assign a unique identifier
+   setNextWindowId(nextWindowId + 1); // Increment the unique identifier
+
+   setWindowList((prevList) => [
+     ...prevList,
+     <MyComputer
+       key={id}
+       id={id} // Pass the unique identifier as a prop
+       removeWindow={() => removeWindow(id)}
+     />,
+   ]);
+ };
 
   const onNotepadClick = () => {
     const id = nextWindowId; // Assign a unique identifier
@@ -129,39 +144,58 @@ function Home() {
   }, [time]);
 
   return (
-    <div class="overflow-x-hidden">
-        {windowList.map((window, index) => (
-          <div key={index}>{window}</div>
-        ))}
+    <div class="overflow-hidden">
       <div
-        class="bg-cover bg-no-repeat bg-center h-screen bg-local "
+        class="overflow-hidden bg-cover bg-no-repeat bg-center h-screen bg-local "
         style={{
           backgroundImage: "url(/images/xpellie.png)",
         }}
 
         // onClick={() => setActiveButtonIndex(0)}
       >
-        <div id="apps" class="z-40 absolute bottom-20 left-20">
-          <Thumbnail
-            containerStyle="pl-1"
-            title="Notepad"
-            src="/images/icons/notepad.png"
-            onDoubleClickHandler={() => {
-              onNotepadClick();
-              onAddFooterClick("Notepad", "/images/icons/notepad.png");
-            }}
-            onClickHandler={() => setActiveButtonIndex(1)}
-          />
+        <div class="overflow-hidden" id="screen-container">
+          {windowList.map((window, index) => (
+            <div key={index}>{window}</div>
+          ))}
+          <div
+            id="apps"
+            class="z-30 grid justify-items-center absolute top-20 left-20"
+          >
+            <Thumbnail
+              containerStyle="pl-1"
+              title="Notepad"
+              src="/images/icons/notepad.png"
+              onDoubleClickHandler={() => {
+                onNotepadClick();
+                onAddFooterClick("Notepad", "/images/icons/notepad.png");
+              }}
+              onClickHandler={() => setActiveButtonIndex(1)}
+            />
 
-          <Thumbnail
-            title="Calculator"
-            src="/images/icons/calculator.png"
-            onDoubleClickHandler={() => {
-              onCalculatorClick();
-              onAddFooterClick("Calculator", "/images/icons/calculator.png");
-            }}
-            onClickHandler={() => setActiveButtonIndex(1)}
-          />
+            <Thumbnail
+              title="Calculator"
+              src="/images/icons/calculator.png"
+              onDoubleClickHandler={() => {
+                onCalculatorClick();
+                onAddFooterClick("Calculator", "/images/icons/calculator.png");
+              }}
+              onClickHandler={() => setActiveButtonIndex(1)}
+            />
+
+            <Thumbnail
+              title="My Computer"
+              containerStyle="pr-2"
+              src="/images/icons/my_computer.png"
+              onDoubleClickHandler={() => {
+                onComputerClick();
+                onAddFooterClick(
+                  "My Computer",
+                  "/images/icons/my_computer.png"
+                );
+              }}
+              onClickHandler={() => setActiveButtonIndex(1)}
+            />
+          </div>
         </div>
         <div
           id="footer"
