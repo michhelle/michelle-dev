@@ -17,7 +17,7 @@ code {
 }
 
 .buttonarea {
-  @apply text-xs hover:bg-blue-600 hover:text-white px-1 my-0.5;
+  @apply text-xs hover:bg-blue-600 hover:text-white px-1.5 mb-0.5;
 }
 
 .resizebtn {
@@ -30,6 +30,17 @@ code {
 
 .calc-red {
   @apply border border-gray-500 rounded-md ml-1 mb-2 py-1 px-0.5 bg-gray-50  hover:border-blue-600 hover:bg-blue-50;
+}
+
+.window-header-btn {
+  @apply text-xs flex flex-row items-center my-0.5 px-0.5 shadow-sm  border border-transparent hover:rounded hover:border-stone-300
+}
+
+.triangle-down {
+  @apply w-0 h-0 
+  border-l-4 border-l-transparent
+  border-t-4 border-t-gray-500
+  border-r-4 border-r-transparent
 }
 
 @layer utilities {
