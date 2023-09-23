@@ -17,6 +17,8 @@ const Window = ({
     offsetY: 0,
   });
 
+   const [active, setActive] = useState(false);
+
 
   const initialiseDrag = (event) => {
     event.preventDefault();
@@ -60,17 +62,20 @@ const Window = ({
   const setActiveWindow = () => {
     // Set window style to be dark blue when active,
     // Light blue when inactive
+    setActive(true);
   };
 
   useEffect(() => {
     // Attach event listeners for dragging only when the component is mounted
     window.addEventListener("mousemove", startDragging, false);
     window.addEventListener("mouseup", stopDragging, false);
+    document.body.addEventListener("click", handleBodyClick);
 
     return () => {
       // Clean up event listeners when the component unmounts
       window.removeEventListener("mousemove", startDragging, false);
       window.removeEventListener("mouseup", stopDragging, false);
+       document.body.removeEventListener("click", handleBodyClick);
     };
   }, []);
 
@@ -78,16 +83,31 @@ const Window = ({
     removeWindow(id);
   };
 
+  const handleBodyClick = (event) => {
+    // Check if the clicked element is not within the window component
+    if (elemRef.current && !elemRef.current.contains(event.target)) {
+      setActive(false); // Set the window as inactive
+    }
+  };
+
+  
+
   return (
     <div
       ref={elemRef}
       id="windows"
-      className={`${hprimary} ${wprimary} overflow-hidden z-40 absolute select-none flex border-2 border-blue-700 rounded-t-lg flex flex-col`}
+      className={`${hprimary} ${wprimary} overflow-hidden absolute select-none flex border-2 rounded-t-lg flex flex-col  ${
+        active ? "z-50 border-blue-700 z-50" : " border-blue-400 z-40 "
+      } `}
     >
       <div
         onMouseDown={initialiseDrag}
         id="window_header"
-        className="justify-between flex flex-row h-6 border border-b-blue-700 w-full row-span-1 self-start bg-gradient-to-b from-cyan-500 from-0% via-blue-700 via-10% to-blue-500 to-100% border-blue-500"
+        className={`${
+          active
+            ? "z-50 bg-gradient-to-b from-cyan-500 from-0% via-blue-700 via-10% to-blue-500 to-100% border-blue-700"
+            : "z-40 saturate-[.75] bg-gradient-to-b from-blue-300 from-0% via-blue-500 via-10% to-blue-300 to-100% border-blue-400 z-40 "
+        } justify-between flex flex-row h-6 border w-full row-span-1 self-start  `}
       >
         <div className="flex flex-row">
           <img className="mt-1 h-4 w-4" src={src} alt={title}></img>
@@ -96,7 +116,11 @@ const Window = ({
           </text>
         </div>
 
-        <div className="flex flex-row pt-0.5">
+        <div
+          className={`${
+            active ? "" : "saturate-[.5] brightness-125"
+          } flex flex-row pt-0.5`}
+        >
           <img
             className="resizebtn"
             src="/images/vis_btns/minimize.png"
